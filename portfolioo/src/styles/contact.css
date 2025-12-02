@@ -1,0 +1,91 @@
+/********** ✨ Contact Section*******************/
+.contact-section{
+    background: black;
+    padding: 80px 10%;
+    text-align: center;
+    color: white;
+} 
+
+/* ✨ Title Styling */
+.section-title {
+    font-size: 25px;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: gold;
+}
+
+/* 📩 Contact Form Container */
+.contact-container {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-form {
+    width: 500px;
+    padding: 30px;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 📝 Input Fields */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid gold;
+    border-radius: 6px;
+    font-size: 14px;
+    background: black;
+    color: white;
+    transition: 0.3s ease;
+}
+
+/* 🔥 Input Focus Effect */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 10px gold;
+}
+
+/* 📝 Textarea */
+.contact-form textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* 🎨 Submit Button */
+.btn-submit {
+    background: gold;
+    color: black;
+    font-size: 14px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-submit:hover {
+    background: white;
+    color: gold;
+    box-shadow: 0 0 15px gold;
+    transform: scale(1.05);
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .contact-form {
+        width: 100%;
+        padding: 20px;
+    }
+}
+

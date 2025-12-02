@@ -1,0 +1,204 @@
+/* Home Section */
+.home {
+    width: 100%;
+    min-height: 100vh;
+    background: gold;
+    padding: 80px 0 40px;
+    margin-top: 0;
+}
+
+.home .row {
+    min-height: calc(100vh - 120px);
+    align-items: center;
+}
+
+.img {
+    border-radius: 50px;
+    border: 3px solid black;
+    height: 250px;
+    width: 250px;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 25px black;
+}
+
+.home-content {
+    max-width: 850px;
+}
+
+.hi {
+    font-size: 32px;
+}
+
+.name {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.para {
+    font-size: 18px;
+    margin: 30px 0 35px;
+}
+
+/* Buttons */
+.btn-box {
+    width: 320px;
+    display: flex;
+    gap: 1.5em;
+}
+
+.btn-1, .btn-2 {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn-1 {
+    background: rgba(0, 0, 0, 0.9);
+    color: #fff;
+}
+
+.btn-1:hover {
+    background: #fff;
+    color: gold;
+    box-shadow: 0 0 25px #fff;
+    transform: scale(1.1);
+}
+
+.btn-2 {
+    background: #fff;
+    color: black;
+}
+
+.btn-2:hover {
+    background: black;
+    color: #fff;
+    box-shadow: 0 0 25px black;
+    transform: scale(1.1);
+}
+
+/* Resume Button */
+.btn-3 {
+    background: gold;
+    color: black;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px gold;
+}
+
+.btn-3 a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-3:hover {
+    background: #fff;
+    color: gold;
+    border: 2px solid gold;
+    box-shadow: 0 0 25px gold;
+    transform: scale(1.1);
+}
+
+.btn-3 a:hover {
+    color: gold;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        gap: 2em;
+        padding: 100px 5% 40px;
+        text-align: center;
+        min-height: calc(100vh - 60px);
+    }
+    
+    .img {
+        height: 200px;
+        width: 200px;
+    }
+    
+    .hi {
+        font-size: 28px;
+    }
+    
+    .name {
+        font-size: 36px;
+    }
+    
+    .para {
+        font-size: 16px;
+    }
+    
+    .btn-box {
+        width: 100%;
+        flex-direction: column;
+        gap: 1em;
+    }
+    
+    .btn-1, .btn-2, .btn-3 {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .home {
+        padding: 120px 3% 40px;
+    }
+    
+    .hi {
+        font-size: 24px;
+    }
+    
+    .name {
+        font-size: 28px;
+    }
+    
+    .para {
+        font-size: 14px;
+        margin: 20px 0 25px;
+    }
+    
+    .img {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .home {
+        padding: 80px 10% 40px;
+    }
+    
+    .img {
+        height: 300px;
+        width: 300px;
+    }
+    
+    .name {
+        font-size: 56px;
+    }
+    
+    .para {
+        font-size: 20px;
+    }
+}
+
+
+.img-fluid
+{
+    max-width: 50%;
+    height: auto;
+}

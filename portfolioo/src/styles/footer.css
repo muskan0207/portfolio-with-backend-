@@ -1,0 +1,180 @@
+/* Footer */
+.footer {
+    background: black;
+    padding: 25px 0;
+    position: relative;
+    color: white;
+}
+/* 📦 Footer Container */
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 🌍 Social Media Icons with Glowing Effect */
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid gold;
+    border-radius: 50%;
+    color: gold;
+    font-size: 14px;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 40%, black 100%);
+    transition: 0.4s ease;
+}
+
+.social-link:hover {
+    background: gold;
+    color: black;
+    transform: scale(1.0);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+.social-link:hover::before {
+    opacity: 0;
+}
+
+/* 🔗 Footer Links */
+.footer-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.3s ease;
+    position: relative;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.footer-links li a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: gold;
+    transition: width 0.3s;
+    margin-top: 3px;
+}
+
+.footer-links li a:hover {
+    color: gold;
+}
+
+.footer-links li a:hover::after {
+    width: 100%;
+}
+
+/* 📜 Copyright */
+.footer-copyright {
+    font-size: 12px;
+    opacity: 0.85;
+    margin: 0;
+}
+
+.footer-copyright span {
+    color: gold;
+    font-weight: bold;
+}
+
+/* 🎨 Floating Golden Dots (Background Effect) */
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 10px;
+    height: 10px;
+    background: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: floatingDots 4s infinite alternate;
+}
+
+.footer::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    right: 10%;
+    width: 15px;
+    height: 15px;
+    background: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    animation: floatingDots 6s infinite alternate;
+}
+
+/* 🟡 Floating Dots Animation */
+@keyframes floatingDots {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 0;
+    }
+
+    .footer-container {
+        gap: 12px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .footer-links li a {
+        font-size: 14px;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-copyright {
+        font-size: 12px;
+    }
+}
+

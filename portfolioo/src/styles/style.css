@@ -1,0 +1,228 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+
+/**************************Navbar***********************************/
+
+/* ✨ Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    padding: 0;
+    z-index: 1000;
+    transition: 0.4s ease-in-out;
+    border-bottom: 2px solid transparent;
+    min-height: 60px;
+}
+
+.navbar .container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+    padding: 15px 6%;
+    width: 100%;
+}
+
+/* 🌟 Navbar Hover Effect */
+.navbar:hover {
+    background: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid gold;
+}
+
+/* 🏆 Logo */
+.logo {
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+    transition: 0.3s ease;
+}
+
+.logo span {
+    color: gold;
+    font-size: 2rem;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    color: gold;
+}
+
+/* 🛠️ Nav Links */
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+  margin-top: 2%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    color: white;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+/* 🌈 Hover & Active Effects */
+.nav-links a::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: gold;
+    transition: 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::before,
+.nav-links a:active::before {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: gold;
+    text-shadow: 0 0 10px gold;
+}
+
+/* 🎨 Contact Button */
+.contact-btn {
+    background: gold;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+}
+
+.contact-btn:hover {
+    transform: scale(1.1);
+    background: white;
+    color: gold;
+    box-shadow: 0 0 20px gold;
+}
+
+/* 📱 Responsive Navbar */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 30px;
+    height: 4px;
+    background: gold;
+    margin: 4px 0;
+    transition: 0.3s ease;
+}
+
+/* 📱 Mobile Navbar */
+@media (max-width: 900px) {
+    .header {
+        padding: 15px 5%;
+    }
+    .nav-links a {
+    font-size: 12px;
+    color: white;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+    
+    .nav-links {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        display: none;
+    ;
+    }
+    .nav-links.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+        font-size: 14px;
+    }
+    .menu-toggle .bar {
+    width: 20px;
+    height: 2px;
+    background: gold;
+    margin: 2px 0;
+    transition: 0.3s ease;
+}
+}
+
+/* 🌐 Social Navbar */
+.social-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px 9%;
+    z-index: 999;
+    border-top: 2px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-navbar ul {
+    display: flex;
+    gap: 20px;
+}
+
+.social-navbar li {
+    list-style: none;
+}
+
+.social-navbar a {
+    color: white;
+    font-size: 1.8rem;
+    transition: 0.3s ease;
+}
+
+.social-navbar a:hover {
+    color: gold;
+}
+
+
+
+
+
