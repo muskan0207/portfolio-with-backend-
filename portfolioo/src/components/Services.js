@@ -3,22 +3,40 @@ import '../styles/services.css';
 
 const serviceData = [
   {
-    title: "Web Development",
-    description: "We create responsive and interactive websites tailored to your business needs.",
-    icon: "💻",
-    backText: "We build websites using modern tools like MERN Stack, WordPress & more."
+    title: "Full-Stack Web Development",
+    description: "Complete MERN stack development with modern, responsive designs and scalable architecture.",
+    icon: "🚀",
+    backText: "Expert in React.js, Node.js, Express.js, MongoDB, and modern web technologies for end-to-end solutions."
   },
   {
-    title: "App Development",
-    description: "Our team designs and develops cutting-edge mobile apps for both iOS and Android.",
-    icon: "📱",
-    backText: "We make fast, functional, and beautiful mobile apps just for you."
+    title: "Backend Development",
+    description: "Robust server-side solutions with NestJS, AWS integration, and real-time features.",
+    icon: "⚡",
+    backText: "Specialized in building scalable APIs, database architecture, and cloud deployment solutions."
   },
   {
-    title: "UI/UX Design",
-    description: "We provide intuitive UI/UX design services that improve user experience and engagement.",
+    title: "Frontend Development",
+    description: "Interactive user interfaces with React.js, responsive design, and optimal user experience.",
     icon: "🎨",
-    backText: "We design modern interfaces with engaging user experiences."
+    backText: "Creating modern, accessible, and performance-optimized web applications with cutting-edge UI/UX."
+  },
+  {
+    title: "Database Design",
+    description: "Efficient database solutions with MongoDB, data modeling, and performance optimization.",
+    icon: "🗄️",
+    backText: "Expert in NoSQL databases, data architecture, and implementing secure data management systems."
+  },
+  {
+    title: "Cloud Integration",
+    description: "AWS cloud services integration, deployment automation, and scalable infrastructure setup.",
+    icon: "☁️",
+    backText: "Proficient in AWS services, DevOps practices, and building cloud-native applications."
+  },
+  {
+    title: "Technical Leadership",
+    description: "Team leadership, project management, and mentoring in software development best practices.",
+    icon: "👥",
+    backText: "Experienced in leading development teams, code reviews, and implementing agile methodologies."
   }
 ];
 

@@ -29,6 +29,7 @@ const Nav = () => {
               <li><Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link></li>
               <li><Link to="/skills" onClick={() => setMenuOpen(false)}>Skills</Link></li>
               <li><Link to="/projects" onClick={() => setMenuOpen(false)}>Projects</Link></li>
+              <li><Link to="/experience" onClick={() => setMenuOpen(false)}>Experience</Link></li>
               <li><Link to="/contact" className="contact-btn" onClick={() => setMenuOpen(false)}>Contact Me</Link></li>
             </ul>
           </header>

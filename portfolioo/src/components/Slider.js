@@ -19,14 +19,32 @@ const Slider = () => {
     );
   };
 
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <div className="bg-slide">
       <div className="slider-container">
         <div className="slider">
-          <img src={images[currentIndex]} alt={`slide-${currentIndex}`} className="slide" />
+          <img 
+            src={images[currentIndex]} 
+            alt={`Project ${currentIndex + 1}`} 
+            className="slide"
+            draggable={false}
+          />
         </div>
-        <button className="prev" onClick={prevSlide}>&#10094;</button>
-        <button className="next" onClick={nextSlide}>&#10095;</button>
+        <button className="prev" onClick={prevSlide}>‹</button>
+        <button className="next" onClick={nextSlide}>›</button>
+      </div>
+      <div className="dots-container">
+        {images.map((_, index) => (
+          <span
+            key={index}
+            className={`dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => goToSlide(index)}
+          />
+        ))}
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Skill from "./components/Skill";
 import Projects from "./components/Projects";
+import Experience from "./components/Experience";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import "./styles/style.css";
@@ -66,6 +67,16 @@ function App() {
             <>
               <Nav />
               <Projects />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/experience"
+          element={
+            <>
+              <Nav />
+              <Experience />
               <Footer />
             </>
           }

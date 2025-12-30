@@ -7,21 +7,24 @@ const Skill = () => {
     { name: "JavaScript", icon: "bxl-javascript" },
     { name: "React", icon: "bxl-react" },
     { name: "Node.js", icon: "bxl-nodejs" },
+    { name: "Express.js", icon: "bxl-nodejs" },
+    { name: "NestJS", icon: "bxl-nodejs" },
     { name: "MongoDB", icon: "bxl-mongodb" },
     { name: "Git", icon: "bxl-git" },
     { name: "GitHub", icon: "bxl-github" },
+    { name: "AWS", icon: "bxl-aws" },
+    { name: "Visual Studio Code", icon: "bxl-visual-studio" },
     { name: "WordPress", icon: "bxl-wordpress" },
-    { name: "Figma", icon: "bxl-figma" },
-    { name: "Bootstrap", icon: "bxl-bootstrap" },
+    { name: "Shopify", icon: "bx-store" },
   ];
 
   const softSkills = [
+    "Leadership",
+    "Management", 
+    "Supervising",
+    "Teamwork",
     "Communication",
-    "Leadership & Management",
-    "Teamwork & Collaboration",
-    "Time Management",
-    "Adaptability",
-    "Interpersonal Skills",
+    "Problem Solving",
   ];
 
   return (

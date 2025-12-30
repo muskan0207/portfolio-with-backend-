@@ -3,6 +3,7 @@ import About from "./About";
 import Services from "./Services";
 import Skill from "./Skill";
 import Projects from "./Projects";
+import Experience from "./Experience";
 import bitmoji from "../assets/images/bitmoji.jpg";
 // import "../styles/style.css";
 import "../styles/home.css"; 
@@ -32,7 +33,7 @@ const Home = () => {
           </p>
           <div className="btn-box d-flex justify-content-center justify-content-md-start gap-3">
             <button className="btn-1">Hire Me</button>
-            <button className="btn-2">Experience</button>
+            <a href="https://www.linkedin.com/in/muskan-gupta-755473247" target="_blank" rel="noopener noreferrer" className="btn-2">LinkedIn</a>
           </div>
         </div>
       </div>
@@ -41,6 +42,7 @@ const Home = () => {
  
 
   <About />
+  <Experience />
   <Services />
   <Skill />
   <Projects />
