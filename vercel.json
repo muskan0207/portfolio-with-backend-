@@ -5,7 +5,7 @@
       "src": "portfolioo/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "portfolioo/build"
+        "distDir": "portfolioo/dist"
       }
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/portfolioo/build/index.html"
+      "dest": "/portfolioo/dist/index.html"
     }
   ]
 }
