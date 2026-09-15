@@ -5,22 +5,14 @@
       "src": "portfolioo/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "portfolioo/dist"
+        "distDir": "dist"
       }
-    },
-    {
-      "src": "server/server.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server/server.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/portfolioo/dist/index.html"
+      "dest": "/portfolioo/dist/$1"
     }
   ]
 }
