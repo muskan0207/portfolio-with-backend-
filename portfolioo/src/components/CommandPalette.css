@@ -1,0 +1,218 @@
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  animation: fadeIn 0.15s ease;
+}
+
+.cmd-palette {
+  width: 100%;
+  max-width: 580px;
+  background: var(--bg-card);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(99, 102, 241, 0.1);
+  overflow: hidden;
+  animation: cmdSlideIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin: 0 16px;
+}
+
+@keyframes cmdSlideIn {
+  from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Header */
+.cmd-header {
+  padding: 16px 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmd-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.cmd-icon {
+  font-size: 1.2rem;
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.cmd-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  caret-color: var(--accent);
+}
+
+.cmd-input::placeholder {
+  color: var(--text-muted);
+}
+
+.cmd-clear {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+}
+
+.cmd-clear:hover {
+  color: var(--text-secondary);
+}
+
+/* List */
+.cmd-list {
+  padding: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.cmd-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  justify-content: center;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.cmd-item--selected {
+  background: rgba(99, 102, 241, 0.12);
+}
+
+.cmd-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cmd-item--selected:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.cmd-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(99, 102, 241, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.cmd-item--selected .cmd-item-icon {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.cmd-item-icon i {
+  font-size: 1.1rem;
+  color: var(--accent-light);
+}
+
+.cmd-item-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.cmd-item-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cmd-item-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cmd-item-cmd {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cmd-item-enter {
+  font-size: 0.8rem;
+  color: var(--accent-light);
+  flex-shrink: 0;
+}
+
+/* Footer */
+.cmd-footer {
+  display: flex;
+  gap: 20px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cmd-footer span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.cmd-footer kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+/* Scrollbar in list */
+.cmd-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cmd-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}

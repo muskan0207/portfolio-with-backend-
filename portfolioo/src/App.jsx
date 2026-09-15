@@ -1,98 +1,40 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Main from "./components/main/Main";
-import Home from "./components/Home";
+import React, { useState } from "react";
 import Nav from "./components/Nav";
-import About from "./components/About";
-import Services from "./components/Services";
-import Skill from "./components/Skill";
+import Hero from "./components/Hero";
+import WhatIBuild from "./components/WhatIBuild";
 import Projects from "./components/Projects";
-import Experience from "./components/Experience";
+import EngineeringMindset from "./components/EngineeringMindset";
+import BackendSystems from "./components/BackendSystems";
+import TechStack from "./components/TechStack";
+import ExperienceTimeline from "./components/ExperienceTimeline";
+import RecruiterSnapshot from "./components/RecruiterSnapshot";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import "./styles/style.css";
+import CommandPalette from "./components/CommandPalette";
+import useScrollReveal from "./hooks/useScrollReveal";
+import "./styles/global.css";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* 1️⃣ First Page - Only Bitmoji */}
-        <Route path="/" element={<Main />} />
+  const [cmdOpen, setCmdOpen] = useState(false);
+  useScrollReveal();
 
-        {/* 2️⃣ Home Page & Other Pages - With Navbar & Footer */}
-        <Route
-          path="/home"
-          element={
-            <>
-              <Nav />
-              <Home />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <>
-              <Nav />
-              <About />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/services"
-          element={
-            <>
-              <Nav />
-              <Services />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/skills"
-          element={
-            <>
-              <Nav />
-              <Skill />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/projects"
-          element={
-            <>
-              <Nav />
-              <Projects />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/experience"
-          element={
-            <>
-              <Nav />
-              <Experience />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <>
-              <Nav />
-              <Contact />
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
-    </Router>
+  return (
+    <>
+      <Nav onCommandOpen={() => setCmdOpen(true)} />
+      <main>
+        <Hero />
+        <div className="reveal"><WhatIBuild /></div>
+        <div className="reveal"><Projects /></div>
+        <div className="reveal"><EngineeringMindset /></div>
+        <div className="reveal"><BackendSystems /></div>
+        <div className="reveal"><TechStack /></div>
+        <div className="reveal"><ExperienceTimeline /></div>
+        <div className="reveal"><RecruiterSnapshot /></div>
+        <div className="reveal"><Contact /></div>
+      </main>
+      <Footer />
+      <CommandPalette open={cmdOpen} onClose={() => setCmdOpen(false)} />
+    </>
   );
 }
 

@@ -25,8 +25,7 @@ const About = () => {
           </p>
           <button className="btn-3">
             <a
-              href="/Muskan_Gupta_Resume.pdf"
-              download="Muskan_Gupta_Resume.pdf"
+              href="https://drive.google.com/uc?export=download&id=1VJQcVK5nq3Oln3sJtTWvazzngR_nmQhZ"
               target="_blank"
               rel="noopener noreferrer"
             >

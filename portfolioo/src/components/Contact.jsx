@@ -1,143 +1,286 @@
 import React, { useState } from "react";
-import "../styles/contact.css";
+import "./Contact.css";
+
+const sanitize = (v) =>
+  v.replace(/<script[^>]*>.*?<\/script>/gi, "").replace(/<[^>]*>/g, "").trim();
+
+const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+const validatePhone = (p) => /^\+?[1-9]\d{1,14}$/.test(p.replace(/\s+/g, ""));
+
+const INITIAL = { Name: "", Email: "", Phone: "", Subject: "", Message: "" };
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    Name: "",
-    Email: "",
-    Phone: "",
-    Subject: "",
-    Message: "",
-  });
+  const [form, setForm] = useState(INITIAL);
+  const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
+  const [errors, setErrors] = useState({});
 
-  const sanitizeInput = (input) => {
-    return input.replace(/<script[^>]*>.*?<\/script>/gi, '')
-                .replace(/<[^>]*>/g, '')
-                .trim();
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePhone = (phone) => {
-    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
-    return phoneRegex.test(phone.replace(/\s+/g, ''));
+  const validate = () => {
+    const e = {};
+    if (!form.Name.trim()) e.Name = "Name is required";
+    if (!validateEmail(form.Email)) e.Email = "Enter a valid email";
+    if (!validatePhone(form.Phone)) e.Phone = "Enter a valid phone number";
+    if (!form.Subject.trim()) e.Subject = "Subject is required";
+    if (form.Message.length < 10) e.Message = "Message must be at least 10 characters";
+    return e;
   };
 
   const handleChange = (e) => {
-    let { name, value } = e.target;
-    
-    // Sanitize input
-    value = sanitizeInput(value);
-    
-    // Format phone input
-    if (name === "Phone") {
-      value = value.replace(/\s+/g, "");
-      if (/^\+\d{1,3}\d{10}$/.test(value)) {
-        value = value.replace(/^(\+\d{1,3})(\d{10})$/, "$1 $2");
-      }
-    }
-
-    setFormData({ ...formData, [name]: value });
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: sanitize(value) }));
+    if (errors[name]) setErrors((er) => ({ ...er, [name]: undefined }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Client-side validation
-    if (!validateEmail(formData.Email)) {
-      alert("❌ Please enter a valid email address.");
+    const errs = validate();
+    if (Object.keys(errs).length) {
+      setErrors(errs);
       return;
     }
-    
-    if (!validatePhone(formData.Phone)) {
-      alert("❌ Please enter a valid phone number.");
-      return;
-    }
-    
-    if (formData.Message.length < 10) {
-      alert("❌ Message must be at least 10 characters long.");
-      return;
-    }
-    
+    setStatus("sending");
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || "https://localhost:5000";
-      const response = await fetch(`${apiUrl}/api/form`, {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+      const res = await fetch(`${apiUrl}/api/form`, {
         method: "POST",
-        headers: { 
+        headers: {
           "Content-Type": "application/json",
-          "X-Requested-With": "XMLHttpRequest"
+          "X-Requested-With": "XMLHttpRequest",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(form),
       });
-
-      if (response.ok) {
-        setFormData({ Name: "", Email: "", Phone: "", Subject: "", Message: "" });
-        alert("✅ Message sent successfully!");
+      if (res.ok) {
+        setStatus("success");
+        setForm(INITIAL);
       } else {
-        const errorData = await response.json();
-        alert("❌ Failed: " + (errorData.error || "Something went wrong."));
+        setStatus("error");
       }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("❌ Server error. Please try again.");
+    } catch {
+      setStatus("error");
     }
   };
 
   return (
-    <section className="contact-section">
-      <h2 className="section-title">Contact <span>Me</span></h2>
-      <div className="contact-container">
-        <form onSubmit={handleSubmit} className="contact-form">
-          <input 
-            type="text" 
-            name="Name" 
-            value={formData.Name} 
-            onChange={handleChange} 
-            placeholder="Full Name" 
-            maxLength="50"
-            required 
-          />
-          <input 
-            type="email" 
-            name="Email" 
-            value={formData.Email} 
-            onChange={handleChange} 
-            placeholder="Email Address" 
-            maxLength="100"
-            required 
-          />
-          <input 
-            type="tel" 
-            name="Phone" 
-            value={formData.Phone} 
-            onChange={handleChange} 
-            placeholder="Phone (+91 9876543210)" 
-            maxLength="20"
-            required 
-          />
-          <input 
-            type="text" 
-            name="Subject" 
-            value={formData.Subject} 
-            onChange={handleChange} 
-            placeholder="Subject" 
-            maxLength="100"
-            required 
-          />
-          <textarea 
-            name="Message" 
-            value={formData.Message} 
-            onChange={handleChange} 
-            placeholder="Your Message" 
-            rows="5" 
-            maxLength="1000"
-            required
-          ></textarea>
-          <button type="submit" className="btn-submit">Send Message</button>
-        </form>
+    <section className="contact" id="contact" aria-labelledby="contact-heading">
+      <div className="section-container">
+        <div className="contact__layout">
+          {/* Left */}
+          <div className="contact__left">
+            <p className="section-label">Contact</p>
+            <h2 className="section-heading" id="contact-heading">
+              Have a project or opportunity in mind?{" "}
+              <span>Let's build something useful.</span>
+            </h2>
+            <p className="contact__sub">
+              I'm open to full-time roles, freelance projects, and interesting
+              conversations about technology. Reach out — I respond promptly.
+            </p>
+
+            <div className="contact__links">
+              <a
+                href="https://www.linkedin.com/in/muskan-gupta-755473247"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact__link"
+                aria-label="LinkedIn profile"
+              >
+                <i className="bx bxl-linkedin" aria-hidden="true"></i>
+                <span>LinkedIn</span>
+                <i className="bx bx-link-external contact__link-ext" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://github.com/muskan-gupta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact__link"
+                aria-label="GitHub profile"
+              >
+                <i className="bx bxl-github" aria-hidden="true"></i>
+                <span>GitHub</span>
+                <i className="bx bx-link-external contact__link-ext" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://drive.google.com/uc?export=download&id=1VJQcVK5nq3Oln3sJtTWvazzngR_nmQhZ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact__link"
+                aria-label="Download Resume"
+              >
+                <i className="bx bx-file" aria-hidden="true"></i>
+                <span>Resume PDF</span>
+                <i className="bx bx-download contact__link-ext" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          {/* Form */}
+          <div className="contact__form-wrap">
+            {status === "success" ? (
+              <div className="contact__success" role="alert">
+                <div className="contact__success-icon">
+                  <i className="bx bx-check" aria-hidden="true"></i>
+                </div>
+                <h3>Message sent!</h3>
+                <p>Thanks for reaching out. I'll get back to you soon.</p>
+                <button
+                  className="btn-outline"
+                  onClick={() => setStatus(null)}
+                >
+                  Send another
+                </button>
+              </div>
+            ) : (
+              <form
+                className="contact__form"
+                onSubmit={handleSubmit}
+                noValidate
+                aria-label="Contact form"
+              >
+                <div className="contact__row">
+                  <div className="contact__field">
+                    <label htmlFor="contact-name" className="contact__label">
+                      Full Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      type="text"
+                      name="Name"
+                      value={form.Name}
+                      onChange={handleChange}
+                      placeholder="Your name"
+                      maxLength={50}
+                      className={errors.Name ? "contact__input contact__input--error" : "contact__input"}
+                      aria-describedby={errors.Name ? "name-error" : undefined}
+                      aria-invalid={!!errors.Name}
+                    />
+                    {errors.Name && (
+                      <span id="name-error" className="contact__error" role="alert">
+                        {errors.Name}
+                      </span>
+                    )}
+                  </div>
+                  <div className="contact__field">
+                    <label htmlFor="contact-email" className="contact__label">
+                      Email
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      name="Email"
+                      value={form.Email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      maxLength={100}
+                      className={errors.Email ? "contact__input contact__input--error" : "contact__input"}
+                      aria-describedby={errors.Email ? "email-error" : undefined}
+                      aria-invalid={!!errors.Email}
+                    />
+                    {errors.Email && (
+                      <span id="email-error" className="contact__error" role="alert">
+                        {errors.Email}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="contact__row">
+                  <div className="contact__field">
+                    <label htmlFor="contact-phone" className="contact__label">
+                      Phone
+                    </label>
+                    <input
+                      id="contact-phone"
+                      type="tel"
+                      name="Phone"
+                      value={form.Phone}
+                      onChange={handleChange}
+                      placeholder="+91 9876543210"
+                      maxLength={20}
+                      className={errors.Phone ? "contact__input contact__input--error" : "contact__input"}
+                      aria-describedby={errors.Phone ? "phone-error" : undefined}
+                      aria-invalid={!!errors.Phone}
+                    />
+                    {errors.Phone && (
+                      <span id="phone-error" className="contact__error" role="alert">
+                        {errors.Phone}
+                      </span>
+                    )}
+                  </div>
+                  <div className="contact__field">
+                    <label htmlFor="contact-subject" className="contact__label">
+                      Subject
+                    </label>
+                    <input
+                      id="contact-subject"
+                      type="text"
+                      name="Subject"
+                      value={form.Subject}
+                      onChange={handleChange}
+                      placeholder="What's this about?"
+                      maxLength={100}
+                      className={errors.Subject ? "contact__input contact__input--error" : "contact__input"}
+                      aria-describedby={errors.Subject ? "subject-error" : undefined}
+                      aria-invalid={!!errors.Subject}
+                    />
+                    {errors.Subject && (
+                      <span id="subject-error" className="contact__error" role="alert">
+                        {errors.Subject}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="contact__field">
+                  <label htmlFor="contact-message" className="contact__label">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="Message"
+                    value={form.Message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project or opportunity..."
+                    rows={5}
+                    maxLength={1000}
+                    className={errors.Message ? "contact__input contact__textarea contact__input--error" : "contact__input contact__textarea"}
+                    aria-describedby={errors.Message ? "message-error" : undefined}
+                    aria-invalid={!!errors.Message}
+                  />
+                  {errors.Message && (
+                    <span id="message-error" className="contact__error" role="alert">
+                      {errors.Message}
+                    </span>
+                  )}
+                </div>
+
+                {status === "error" && (
+                  <div className="contact__form-error" role="alert">
+                    <i className="bx bx-error-circle" aria-hidden="true"></i>
+                    Something went wrong. Please try again or reach out on LinkedIn.
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn-primary contact__submit"
+                  disabled={status === "sending"}
+                  aria-busy={status === "sending"}
+                >
+                  {status === "sending" ? (
+                    <>
+                      <i className="bx bx-loader-alt contact__spinner" aria-hidden="true"></i>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <i className="bx bx-send" aria-hidden="true"></i>
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

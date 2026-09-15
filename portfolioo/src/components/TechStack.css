@@ -1,0 +1,125 @@
+.stack {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+.stack__header {
+  margin-bottom: 52px;
+}
+
+.stack__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Group tabs */
+.stack__groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stack__group-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.stack__group-btn i {
+  font-size: 1rem;
+}
+
+.stack__group-btn:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  background: var(--bg-card-hover);
+}
+
+.stack__group-btn--active {
+  background: var(--accent-glow) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-light) !important;
+}
+
+/* Items grid */
+.stack__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  animation: fadeUp 0.3s ease forwards;
+}
+
+.stack__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  cursor: default;
+}
+
+.stack__item:hover {
+  border-color: color-mix(in srgb, var(--item-color) 40%, transparent);
+  background: color-mix(in srgb, var(--item-color) 6%, var(--bg-card));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stack__item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.stack__item:hover .stack__item-icon {
+  background: color-mix(in srgb, var(--item-color) 15%, transparent);
+}
+
+.stack__item-icon i {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.stack__item:hover .stack__item-icon i {
+  color: var(--item-color);
+}
+
+.stack__item-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+
+.stack__item:hover .stack__item-name {
+  color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stack {
+    padding: 72px 0;
+  }
+}
